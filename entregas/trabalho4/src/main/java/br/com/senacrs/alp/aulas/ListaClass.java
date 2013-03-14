@@ -1,10 +1,13 @@
 package br.com.senacrs.alp.aulas;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+
 
 public class ListaClass<T extends Object> implements Lista<T> {
 
-	private ArrayList<T> x = new ArrayList<T>();
+	private List<T> x = new LinkedList<T>();
 
 	@Override
 	public void adicionarFinal(T valor) {
