@@ -1,13 +1,8 @@
 package br.com.senacrs.alp.aulas;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-
-
 public class ListaClass<T extends Object> implements Lista<T> {
 
-	private List<T> x = new LinkedList<T>();
+	private NodeLinkedList<T> x = new NodeLinkedList<T>();
 
 	@Override
 	public void adicionarFinal(T valor) {
@@ -21,9 +16,6 @@ public class ListaClass<T extends Object> implements Lista<T> {
 
 	@Override
 	public void adicionarPosicao(int posicao, T valor) {
-		if (posicao > obterTamanho() || posicao < 0 || valor == null)
-			throw new IllegalArgumentException();
-
 		x.add(posicao, valor);
 	}
 
@@ -34,18 +26,12 @@ public class ListaClass<T extends Object> implements Lista<T> {
 
 	@Override
 	public T obterUltimo() {
-		int i = obterTamanho();
-		if (i > 0)
-			i = i - 1;
-
+		int i = obterTamanho() - 1;		
 		return obterPosicao(i);
 	}
 
 	@Override
-	public T obterPosicao(int posicao) {
-		if (posicao > obterTamanho() - 1 || posicao < 0)
-			throw new IllegalArgumentException();
-
+	public T obterPosicao(int posicao) {		
 		return x.get(posicao);
 	}
 
@@ -56,9 +42,6 @@ public class ListaClass<T extends Object> implements Lista<T> {
 
 	@Override
 	public T removerPosicao(int posicao) {
-		if (posicao > obterTamanho() - 1 || posicao < 0)
-			throw new IllegalArgumentException();
-
 		return x.remove(posicao);
 	}
 
