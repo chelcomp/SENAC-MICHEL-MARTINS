@@ -61,16 +61,14 @@ public  class NodeLinkedList<T> {
 		if (nodoRemover == null)
 			throw new IllegalArgumentException();
 
-		
-		Node<T> nodoAnterior = getNodo(index - 1);
-
-		if (nodoAnterior != null)
-			nodoAnterior.setSubNodo(nodoRemover.getSubNodo());
-		else if (nodoRemover != null)
+		if (index == 0)
 			nodoInicial = nodoRemover.getSubNodo();
-		else
-			throw new IllegalArgumentException();
-
+		else 
+		{
+			Node<T> nodoAnterior = getNodo(index - 1);
+			nodoAnterior.setSubNodo(nodoRemover.getSubNodo());			
+		}
+		
 		size--;
 		return nodoRemover.getValue();
 
