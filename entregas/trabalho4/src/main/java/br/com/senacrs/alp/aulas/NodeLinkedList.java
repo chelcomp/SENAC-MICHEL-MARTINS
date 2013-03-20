@@ -32,8 +32,8 @@ public  class NodeLinkedList<T> {
 		if (index < 0 || index > size || value == null)
 			throw new IllegalArgumentException();
 
-		Node<T> newNodo = new Node<T>();
-		newNodo.setValue(value);
+		Node<T> newNodo = new Node<T>(value);
+		
 		
 		if (index > 0) {
 			Node<T> nodoAnterior = getNodo(index - 1);
