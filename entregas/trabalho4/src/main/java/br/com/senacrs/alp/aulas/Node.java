@@ -16,11 +16,11 @@ public class Node<T> {
 		this.value = value;
 	}
 
-	public Node<T> getSubNodo() {
+	public Node<T> getSubNode() {
 		return subNodo;
 	}
 
-	public void setSubNodo(Node<T> subNodo) {
+	public void setSubNode(Node<T> subNodo) {
 		this.subNodo = subNodo;
 	}
 

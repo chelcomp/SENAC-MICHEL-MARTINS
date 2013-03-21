@@ -1,11 +1,11 @@
 package br.com.senacrs.alp.aulas;
 
 public  class NodeLinkedList<T> {
-	private Node<T> nodoInicial = null;
+	private Node<T> startNode = null;
 	private int size = 0;
 
 	T get(int index) {
-		Node<T> n = getNodo(index);
+		Node<T> n = getNode(index);
 		
 		if(n == null)
 			throw new IllegalArgumentException();
@@ -13,14 +13,14 @@ public  class NodeLinkedList<T> {
 		return n.getValue();
 	}
 
-	private Node<T> getNodo(int index) {
+	private Node<T> getNode(int index) {
 		if (index < 0 || index > size - 1) 
 			return null;
 
-		Node<T> n = nodoInicial;
+		Node<T> n = startNode;
 
 		for (int i = 0; i < index; i++) {
-			n = n.getSubNodo();
+			n = n.getSubNode();
 		}
 
 		return n;
@@ -36,12 +36,12 @@ public  class NodeLinkedList<T> {
 		
 		
 		if (index > 0) {
-			Node<T> nodoAnterior = getNodo(index - 1);
-			newNodo.setSubNodo(nodoAnterior.getSubNodo());
-			nodoAnterior.setSubNodo(newNodo);
+			Node<T> nodoAnterior = getNode(index - 1);
+			newNodo.setSubNode(nodoAnterior.getSubNode());
+			nodoAnterior.setSubNode(newNodo);
 		} else {
-			newNodo.setSubNodo(nodoInicial);
-			nodoInicial = newNodo;
+			newNodo.setSubNode(startNode);
+			startNode = newNodo;
 		}
 		size++;
 	}
@@ -57,16 +57,16 @@ public  class NodeLinkedList<T> {
 
 	T remove(int index) {
 
-		Node<T> nodoRemover = getNodo(index);
+		Node<T> nodoRemover = getNode(index);
 		if (nodoRemover == null)
 			throw new IllegalArgumentException();
 
 		if (index == 0)
-			nodoInicial = nodoRemover.getSubNodo();
+			startNode = nodoRemover.getSubNode();
 		else 
 		{
-			Node<T> nodoAnterior = getNodo(index - 1);
-			nodoAnterior.setSubNodo(nodoRemover.getSubNodo());			
+			Node<T> nodoAnterior = getNode(index - 1);
+			nodoAnterior.setSubNode(nodoRemover.getSubNode());			
 		}
 		
 		size--;
@@ -75,7 +75,7 @@ public  class NodeLinkedList<T> {
 	}
 
 	void clear() {
-		nodoInicial = null;
+		startNode = null;
 		size = 0;
 
 	}
