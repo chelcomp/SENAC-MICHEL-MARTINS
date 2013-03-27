@@ -1,10 +1,10 @@
 package br.com.senacrs.alp.aulas;
 
-public class Node<T> {
+public class Nodo<T> {
 	private T value;
-	private Node<T> subNodo;
+	private Nodo<T> subNodo;
 
-	Node(T value) {
+	Nodo(T value) {
 		setValue(value);
 	}
 
@@ -16,11 +16,11 @@ public class Node<T> {
 		this.value = value;
 	}
 
-	public Node<T> getSubNode() {
+	public Nodo<T> getSubNodo() {
 		return subNodo;
 	}
 
-	public void setSubNode(Node<T> subNodo) {
+	public void setSubNodo(Nodo<T> subNodo) {
 		this.subNodo = subNodo;
 	}
 

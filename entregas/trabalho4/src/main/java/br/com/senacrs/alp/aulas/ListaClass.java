@@ -2,7 +2,7 @@ package br.com.senacrs.alp.aulas;
 
 public class ListaClass<T extends Object> implements Lista<T> {
 
-	private NodeLinkedList<T> x = new NodeLinkedList<T>();
+	private NodoLinkedList<T> x = new NodoLinkedList<T>();
 
 	@Override
 	public void adicionarFinal(T valor) {
