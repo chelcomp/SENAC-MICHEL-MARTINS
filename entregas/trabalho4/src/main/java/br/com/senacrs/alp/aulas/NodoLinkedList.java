@@ -15,26 +15,25 @@ public class NodoLinkedList<T> {
 	}
 
 	private Nodo<T> getNodo(int index) {
+		// Se for indice inválido
 		if (index < 0 || index > size - 1)
-			return null;
+			return null;		
 
-		Nodo<T> n = null;
-
+		// Se for o último nodo
 		if (size > 1 && index == size - 1)
-			n = endNodo;
-		else {
-			n = startNodo;
+			return endNodo;
 
-			for (int i = 0; i < index; i++) {
-				n = n.getSubNodo();
-			}
+		// Se for o primeiro nodo ou
+		// outro nodo do meio da lista.
+		Nodo<T> n = startNodo;
+		for (int i = 0; i < index; i++) {
+			n = n.getSubNodo();
 		}
 		return n;
 	}
 
-	
 	void add(T value) {
-		endNodo.setSubNodo( new Nodo<T>(value));
+		endNodo.setSubNodo(new Nodo<T>(value));
 		endNodo = endNodo.getSubNodo();
 		size++;
 	}
@@ -60,7 +59,6 @@ public class NodoLinkedList<T> {
 			size++;
 		} else if (index == size)
 			add(value);
-
 
 	}
 
