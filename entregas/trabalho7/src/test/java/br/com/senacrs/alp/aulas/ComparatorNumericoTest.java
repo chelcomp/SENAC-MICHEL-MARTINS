@@ -65,6 +65,7 @@ public class ComparatorNumericoTest {
 		for (int i = 0; i < ndx; i++) {
 			lista.add(Integer.valueOf(impar));
 		}
+		
 		for (int i = ndx; i < tam; i++) {
 			lista.add(Integer.valueOf(par));
 		}
