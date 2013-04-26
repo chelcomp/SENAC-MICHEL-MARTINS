@@ -10,48 +10,106 @@ import java.io.Reader;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.lang3.ObjectUtils.Null;
+
 public class zLeitorArquivos implements LeitorArquivos {
 
 	@Override
 	public String[] lerArquivo(String arquivo) {
-		// TODO Auto-generated method stub
-		File f = new File(arquivo);
 
-		try {
-			Reader fr = new FileReader(f);
-			BufferedReader frb = new BufferedReader(fr);
-
-			List<String> linhas = new ArrayList<String>();
-
-			String linha;
-			while ((linha = frb.readLine()) != null) {
-				linhas.add(linha);
-			}
-
-			return linhas.toArray(new String[linhas.size()]);
-
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return null;
+		List<String> linhas = getBoddyFile(arquivo);
+		return linhas.toArray(new String[linhas.size()]);
 
 	}
 
-	@Override
-	public String[] lerArquivoComSubstituicao(String arquivo, String busca,String substituicao) {
-		// TODO Auto-generated method stub
-		String[] linhas = lerArquivo(arquivo);
-		List<String> linhasList = new ArrayList<String>();
-		
-		for (int i = 0; i < linhas.length; i++) {
-			linhasList.add(linhas[i].replace(busca,substituicao));
+	private List<String> getBoddyFile(String arquivo) {
+		File file = null;
+		BufferedReader bufferedReader = null;
+		Reader fileReader = null;
+
+		file = getFile(arquivo);
+
+		try {
+			fileReader = getFileReader(file);
+			bufferedReader = new BufferedReader(fileReader);
+
+			return getLinesFile(bufferedReader);
+
+		} finally {
+			closeFileLinks(bufferedReader, fileReader);
 		}
-		
-		return linhasList.toArray(new String[linhasList.size()]);
+	}
+
+	private void closeFileLinks( BufferedReader bufferedReader,
+			Reader fileReader) {
+		try {
+			bufferedReader.close();
+			fileReader.close();
+		} catch (IOException e) {
+			throw new IllegalStateException("Arquivo não pode ser lido", e);
+		}
+	}
+
+	private List<String> getLinesFile(BufferedReader bufferedReader) {
+		List<String> lsitaLinhas = new ArrayList<String>();
+		String linha;
+
+		try {
+
+			while ((linha = bufferedReader.readLine()) != null) {
+				lsitaLinhas.add(linha);
+			}
+
+			return lsitaLinhas;
+
+		} catch (IOException e) {
+			throw new IllegalArgumentException(
+					"Arquivo não pode ser localizado", e);
+		}
+	}
+
+	private Reader getFileReader(File file) {
+		Reader fileReader = null;
+
+		try {
+			fileReader = new FileReader(file);
+		} catch (FileNotFoundException e) {
+			throw new IllegalArgumentException(
+					"Arquivo não pode ser localizado", e);
+		}
+		return fileReader;
+	}
+
+	private File getFile(String arquivo) {
+		File file = new File(arquivo);
+
+		if (!file.exists())
+			throw new IllegalArgumentException(
+					"Arquivo não pode ser localizado " + arquivo);
+
+		if (!file.isFile())
+			throw new IllegalArgumentException(
+					"Endereço fornecido não representa um arquivo " + arquivo);
+
+		if (!file.canRead())
+			throw new IllegalArgumentException("Arquivo não pode ser lido");
+
+		return file;
+	}
+
+	@Override
+	public String[] lerArquivoComSubstituicao(String arquivo, String busca,	String substituicao) {
+
+		List<String> linhasList = getBoddyFile(arquivo);
+		List<String> linhasRsponse = new ArrayList<String>();
+
+		for (int i = 0; i < linhasList.size(); i++) {
+			String a = linhasList.get(i);
+			String b = a.replace(busca, substituicao);
+			linhasRsponse.add(b);
+		}
+
+		return linhasRsponse.toArray(new String[linhasList.size()]);
 	}
 
 }
