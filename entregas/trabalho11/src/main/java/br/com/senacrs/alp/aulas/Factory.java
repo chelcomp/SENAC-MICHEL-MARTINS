@@ -7,9 +7,9 @@ public class Factory {
 	private Factory() {
 	}
 	
-	public LeitorArquivos criarLeitor() {
+	public ArquivoConfiguracao criarArquivoConfiguracao(String arquivoEntrada) {
 	
-		LeitorArquivos resultado = new zLeitorArquivos();
+		ArquivoConfiguracao resultado = new zArquivoConfiguracao(arquivoEntrada);
 		
 		//implementar
 		
@@ -19,8 +19,4 @@ public class Factory {
 	public static Factory getInstancia() {
 		return instancia;
 	}
-	
-	
-
-	
 }

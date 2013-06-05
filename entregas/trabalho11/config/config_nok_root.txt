@@ -1,0 +1,3 @@
+root_dir = html
+port = 54321
+error_dir = ./html/error/

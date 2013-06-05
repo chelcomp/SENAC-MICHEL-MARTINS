@@ -7,11 +7,11 @@ public class Factory {
 	private Factory() {
 	}
 	
-	public LeitorArquivos criarLeitor() {
+	public Configuracao criarConfiguracao(ArquivoConfiguracao config) {
 	
-		LeitorArquivos resultado = new zLeitorArquivos();
+		Configuracao resultado = new zConfiguracao( config);
 		
-		//implementar
+	
 		
 		return resultado;
 	}
@@ -19,8 +19,4 @@ public class Factory {
 	public static Factory getInstancia() {
 		return instancia;
 	}
-	
-	
-
-	
 }

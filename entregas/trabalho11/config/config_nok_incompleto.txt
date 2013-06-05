@@ -1,0 +1,7 @@
+# Comentario de linha inteira
+
+port = 54321 # comentario em linha
+error_dir = ./html/error/
+# root_dir = ./html
+
+# Comentario final

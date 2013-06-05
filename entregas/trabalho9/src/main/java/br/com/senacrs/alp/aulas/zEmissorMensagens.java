@@ -48,10 +48,10 @@ public class zEmissorMensagens implements EmissorMensagens {
 	@Override
 	public String formatarMensagem(String chave, Object... argumentos) {
 
-		if(!dicionario.containsKey(chave))
-			throw new IllegalArgumentException(
-					String.format("Chave inexistente [%s]",chave));
-		
+		if (!dicionario.containsKey(chave))
+			throw new IllegalArgumentException(String.format(
+					"Chave inexistente [%s]", chave));
+
 		String formatada = String.format(dicionario.get(chave), argumentos);
 
 		return formatada;
