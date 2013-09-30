@@ -14,44 +14,7 @@ public class Principal {
 
 		leTeclado();
 
-		PNMFile f = new PNMFile(400, 400);
-
-		/*
-		 * for (int x = 0; x < 16; x++) { for (int y = 0; y < 16; y++) {
-		 * f.setPixel(x, y, x + y * 16);
-		 * 
-		 * } }
-		 */
-
-		Coordenada xy = new Coordenada(100, 100);
-		Cor cor = new Cor(100, 200, 100);
-		f.circulo(xy, 50, cor);
-
-		xy = new Coordenada(110, 100);
-		cor = new Cor(100, 10, 100);
-		f.circulo(xy, 30, cor);
-
-		xy = new Coordenada(10, 10);
-		Coordenada xy2 = new Coordenada(10, 80);
-		cor = new Cor(150, 100, 100);
-		f.linha(xy, xy2, cor);
-
-		xy = new Coordenada(1, 20);
-		xy2 = new Coordenada(20, 80);
-		cor = new Cor(150, 100, 150);
-		f.linha(xy, xy2, cor);
-
-		File file = new File("c:\\teste.pnm");
-		try {
-			// FileWriter fw = new FileWriter(file);
-			PrintStream ps = new PrintStream(file);
-			f.printImage(ps, PNMFileType.PORTABLE_GRAYMAP);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		// cf.printImage(System.out);
+		
 
 	}
 
